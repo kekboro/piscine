@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:41:36 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/18 14:57:28 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/20 20:36:36 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ int	ft_sqrt(int nb)
 		return (1);
 	else
 	{
-		while (i * i < nb)
-		i++;
+		while (i * i <= nb && i < 46431)
+		{
+			if (i * i == nb)
+				return (i);
+			i++;
+		}
 	}
-	return (i);
+	return (0);
 }
