@@ -6,11 +6,19 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 19:24:46 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/20 19:26:50 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:59:42 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_POINT_H
 # define FT_POINT_H
 
-# define 
+struct t_point
+{
+	int	x;
+	int	y;
+};
+
+
+
+#endif

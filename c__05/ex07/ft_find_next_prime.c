@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:45:16 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/15 13:37:42 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:36:21 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@ int	ft_is_prime(int nb)
 {
 	int	i;
 
-	i = 5;
-	if (nb == 2 || nb == 3)
-		return (1);
-	else if (nb <= 1 || nb % 2 == 0 || nb % 3 == 0)
+	i = 2;
+	if (nb <= 1)
 		return (0);
-	else
+	while (i <= nb / i)
 	{
-		while (i * i < nb)
-		{
-			if (nb % i == 0)
-				return (0);
-			else
-				i++;
-		}
+		if (nb % i == 0)
+			return (0);
+		i++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 19:10:16 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/20 19:12:57 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:40:09 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef int	t_bool;
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
-# define EVEN(x) (x & 1)
+# define EVEN(nbr) (nbr & 1)
 
 #endif 
