@@ -6,32 +6,33 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:47:01 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/18 10:02:53 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:46:49 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-char *ft_strdup(char *src)
+char	*ft_strdup(char *src)
 {
-    char *new;
-    int i;
+	char	*new;
+	int		i;
 
-    i = 0;
-    if (!(new = (char*)malloc(sizeof(char) * ft_strlen(src) + 1)))
-        return NULL;
-    while (*src)
-        new[i++] = *src++;
-    new[i] = '\0';
-    return (new);
+	i = 0;
+	new = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
+	if (!(new))
+		return (0);
+	while (*src)
+		new[i++] = *src++;
+	new[i] = '\0';
+	return (new);
 }

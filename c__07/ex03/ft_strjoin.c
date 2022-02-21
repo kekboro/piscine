@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 10:01:56 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/18 10:20:06 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:54:42 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int ft_lngth(int size, char **strs, char *sep)
+int	ft_lngth(int size, char **strs, char *sep)
 {
-	int i;
-	int lng;
+	int	i;
+	int	lng;
 
 	i = 0;
 	lng = 0;
@@ -55,21 +55,23 @@ int ft_lngth(int size, char **strs, char *sep)
 		i++;
 	}
 	lng = lng + (ft_strlen(sep) * (size - 1)) + 1;
-	return(lng);
+	return (lng);
 }
 
-char * ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int i;
-	char *conc;
+	int		i;
+	char	*conc;
 
 	if (size == 0)
-	{	conc = malloc(sizeof(char));
+	{
+		conc = malloc(sizeof(char));
 		*conc = 0;
-		return(conc);
+		return (conc);
 	}
-	if (!( conc = (char*) malloc(sizeof(ft_lngth(size, strs, sep)))))
-		return NULL;
+	conc = (char *) malloc(sizeof(ft_lngth(size, strs, sep)));
+	if (!(conc))
+		return (0);
 	i = 0;
 	*conc = 0;
 	while (i < size)
@@ -77,9 +79,9 @@ char * ft_strjoin(int size, char **strs, char *sep)
 		ft_strcat(conc, strs[i]);
 		if (i < size - 1)
 			ft_strcat(conc, sep);
-		i++;	
+		i++;
 	}
-	return(conc);
+	return (conc);
 }
 
 #include <stdio.h>
