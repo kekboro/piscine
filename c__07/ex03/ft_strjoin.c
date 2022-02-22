@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 10:01:56 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/21 16:54:42 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:40:55 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,48 +45,63 @@ int	ft_strlen(char *str)
 int	ft_lngth(int size, char **strs, char *sep)
 {
 	int	i;
-	int	lng;
+	int	lngth;
 
 	i = 0;
-	lng = 0;
+	lngth = 0;
 	while (i < size)
 	{
-		lng = lng + ft_strlen(strs[i]);
+		lngth = lngth + ft_strlen(strs[i]);
 		i++;
 	}
-	lng = lng + (ft_strlen(sep) * (size - 1)) + 1;
-	return (lng);
+	lngth = lngth + (ft_strlen(sep) * (size - 1)) + 1;
+	return (lngth);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int		i;
-	char	*conc;
+	char	*result;
 
 	if (size == 0)
 	{
-		conc = malloc(sizeof(char));
-		*conc = 0;
-		return (conc);
+		result = malloc(sizeof(char));
+		*result = 0;
+		return (result);
 	}
-	conc = (char *) malloc(sizeof(ft_lngth(size, strs, sep)));
-	if (!(conc))
+	result = (char *) malloc(sizeof(ft_lngth(size, strs, sep)));
+	if (!(result))
 		return (0);
 	i = 0;
-	*conc = 0;
+	*result = 0;
 	while (i < size)
 	{
-		ft_strcat(conc, strs[i]);
+		ft_strcat(result, strs[i]);
 		if (i < size - 1)
-			ft_strcat(conc, sep);
+			ft_strcat(result, sep);
 		i++;
 	}
-	return (conc);
+	return (result);
 }
 
 #include <stdio.h>
 
 int		main(int argc, char **argv)
-{
-	printf("%s\n", ft_strjoin(4, argv + 1, " "));
+{		
+	printf("%s\n", ft_strjoin(4, argv + 1, " & "));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

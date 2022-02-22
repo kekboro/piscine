@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:47:01 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/21 16:46:49 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:50:29 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,18 @@ char	*ft_strdup(char *src)
 		new[i++] = *src++;
 	new[i] = '\0';
 	return (new);
+}
+
+#include <stdio.h>
+
+int main()
+{
+	char *src = "hello";
+	char *theirs = NULL;
+	char *mine = NULL;
+
+	mine = ft_strdup(src);
+	theirs = ft_strdup(src);
+	printf("%s\n%s\n", mine, theirs);
+	return(0);
 }

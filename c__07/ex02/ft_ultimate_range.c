@@ -6,16 +6,16 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:43:50 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/20 14:07:55 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:00:21 by nvan-ges         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int ft_ultimate_range(int **range, int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
-	int i;
-	int *tab;
+	int	i;
+	int	*tab;
 
 	if (min >= max)
 	{
