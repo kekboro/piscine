@@ -1,72 +1,84 @@
+#include <stdlib.h>
 
-
-int ft_strlen(char *str)
+int		char_is_separator(char c, char *charset)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (charset[i] != '\0')
+	{
+		if (c == charset[i])
+			return (1);
 		i++;
-	return(i);
+	}
+	if (c == '\0')
+		return (1);
+	return (0);
 }
 
-static int	count_words(const char *str, char c)
+int		count_words(char *str, char *charset)
 {
-	int i;
-	int trigger;
+	int	i;
+	int	words;
+
+	words = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (char_is_separator(str[i + 1], charset) == 1
+				&& char_is_separator(str[i], charset) == 0)
+			words++;
+		i++;
+	}
+	return (words);
+}
+
+void	write_word(char *dest, char *from, char *charset)
+{
+	int	i;
 
 	i = 0;
-	trigger = 0;
-	while (*str)
+	while (char_is_separator(from[i], charset) == 0)
 	{
-		if (*str != c && trigger == 0)
-		{
-			trigger = 1;
-			i++;
-		}
-		else if (*str == c)
-			trigger = 0;
-		str++;
+		dest[i] = from[i];
+		i++;
 	}
-	return (i);
+	dest[i] = '\0';
 }
 
-static char	*word_dup(const char *str, int start, int finish)
+void	write_split(char **split, char *str, char *charset)
 {
-	char	*word;
 	int		i;
+	int		j;
+	int		word;
 
+	word = 0;
 	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	return (word);
+	while (str[i] != '\0')
+	{
+		if (char_is_separator(str[i], charset) == 1)
+			i++;
+		else
+		{
+			j = 0;
+			while (char_is_separator(str[i + j], charset) == 0)
+				j++;
+			split[word] = (char*)malloc(sizeof(char) * (j + 1));
+			write_word(split[word], str + i, charset);
+			i += j;
+			word++;
+		}
+	}
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char *str, char *charset)
 {
-	size_t	i;
-	size_t	j;
-	int		index;
-	char	**split;
+	char	**res;
+	int		words;
 
-	if (!s || !(split = malloc((count_words(s, c) + 1) * sizeof(char *))))
-		return (0);
-	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
-		{
-			split[j++] = word_dup(s, index, i);
-			index = -1;
-		}
-		i++;
-	}
-	split[j] = 0;
-	return (split);
+	words = count_words(str, charset);
+	res = (char**)malloc(sizeof(char*) * (words + 1));
+	res[words] = 0;
+	write_split(res, str, charset);
+	return (res);
 }
