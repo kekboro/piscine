@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvan-ges <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 16:46:59 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/09/17 12:49:01 by nevan-ge         ###   ########.fr       */
+/*   Created: 2022/09/20 15:10:32 by nevan-ge          #+#    #+#             */
+/*   Updated: 2022/09/22 14:00:58 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
-#include <unistd.h>
 
 int	*ft_range(int min, int max)
 {
 	int	i;
-	int	*tab;
+	int	*range;
 
 	i = 0;
 	if (min >= max)
 		return (0);
-	tab = (int *)malloc(sizeof(*tab) * (max - min));
-	while (min < max)
+	range = (int *)malloc(sizeof(int) * (max - min));
+	if (!(range))
+		return (0);
+	while (max < min)
 	{
-		tab[i] = min;
-		i++;
+		range[i] = min;
 		min++;
+		i++;
 	}
-	return (tab);
+	return (range);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 10:01:56 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/09/17 12:50:52 by nevan-ge         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:31:55 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,35 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	}
 	return (result);
 }
+
+
+#include <unistd.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
+
+int main()
+{
+	char *str1 = "Hallo";
+	char *str2 = "dit is een";
+	char *str3 = "test";
+
+	char *str[3] = {str1, str2, str3};
+	char *sep = " ";
+	ft_putstr(ft_strjoin(3, str, sep));
+}
+
