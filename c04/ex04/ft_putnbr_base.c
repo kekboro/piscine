@@ -6,7 +6,7 @@
 /*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:37:14 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/09/20 13:51:22 by nevan-ge         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:44:07 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,4 @@ void	ft_putnbr_base(int nbr, char *base)
 		while (--i >= 0)
 			ft_putchar(base[nbr_final[i]]);
 	}
-}
-#include <stdio.h>
-
-int main() {
-	int nbr = 196;
-	char *base = "0123456789ABCDEF";
-	printf("%d\n", nbr);
-	ft_putnbr_base(nbr, base);
 }
