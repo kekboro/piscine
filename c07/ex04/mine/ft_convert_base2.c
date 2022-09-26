@@ -6,7 +6,7 @@
 /*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:52:17 by nevan-ge          #+#    #+#             */
-/*   Updated: 2022/09/26 17:04:04 by nevan-ge         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:07:45 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	nb_len(int nb, char *base);
 char	*ft_nbr_base(int nbr, char *base);
-
+/*
 char	*if_neg(int nb, char *base_to)
 {
 	int		i;
@@ -24,6 +24,7 @@ char	*if_neg(int nb, char *base_to)
 	nb *= -1;
 	result[0] = '-';
 	i = 0;
+	result = malloc (sizeof(char *) * (nb_len(nb, base_to)));
 	result = ft_nbr_base(nb, base_to);
 	while (i <= nb_len(nb, base_to))
 	{
@@ -32,7 +33,7 @@ char	*if_neg(int nb, char *base_to)
 	}
 	return (neg_result);
 }
-
+*/
 int	check_base(char *base)
 {
 	int	i;

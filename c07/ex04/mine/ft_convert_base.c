@@ -6,7 +6,7 @@
 /*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:42:08 by nevan-ge          #+#    #+#             */
-/*   Updated: 2022/09/26 17:04:12 by nevan-ge         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:21 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 char	*ft_strcat(char *dest, char *src);
 int		get_nb(char c, char *base);
 int		ft_atoi_base(char *str, char *base);
-int 	check_base(char * base);
-char	*if_neg(int nb, char *base_to);
-
+int 	check_base(char *);
 
 char	*ft_nbr_base(int nbr, char *base)
 {
@@ -68,18 +66,29 @@ int	nb_len(int nb, char *base)
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	char	*result;
+	char	*neg_result;
 	int		nb;
+	int 	i;
 
 	if ((!(check_base(base_from)) || (!(check_base(base_to)))))
 		return (0);
 	nb = ft_atoi_base(nbr, base_from);
 	result = malloc (sizeof(char *) * (nb_len(nb, base_to)));
+	neg_result = malloc (sizeof(char *) * (nb_len(nb, base_to) + 1));
 	if (!(result))
 		return (0);
 	if (nb < 0)
 	{
-		result = if_neg(nb, base_to);
-		return (result);
+		nb *= -1;
+		neg_result[0] = '-';
+		i = 0;
+		result = ft_nbr_base(nb, base_to);
+		while (i <= nb_len(nb, base_to))
+		{
+			neg_result[i + 1] = result[i];
+			i++;
+		}
+		return (neg_result);
 	}
 	result = ft_nbr_base(nb, base_to);
 	return (result);
@@ -91,5 +100,3 @@ int main(int ac, char **av)
 {
 	printf("%s\n", ft_convert_base("-7b", "0123456789abcdef", "01"));
 }
-
-//neg_result = malloc (sizeof(char *) * (nb_len(nb, base_to) + 1));
