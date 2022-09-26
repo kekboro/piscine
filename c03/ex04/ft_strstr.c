@@ -6,7 +6,7 @@
 /*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 11:46:49 by nevan-ge          #+#    #+#             */
-/*   Updated: 2022/09/20 11:55:09 by nevan-ge         ###   ########.fr       */
+/*   Updated: 2022/09/25 14:22:49 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strstr(char *str, char *to_find)
 	int	j;
 
 	i = 0;
-	if (to_find[0] == '\0')
+	if (!(to_find))
 		return (str);
 	while (str[i] != '\0')
 	{
