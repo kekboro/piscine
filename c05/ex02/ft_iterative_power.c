@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 14:14:58 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/18 14:51:56 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:03:25 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,8 @@ int	ft_iterative_power(int nb, int power)
 	}
 	return (k);
 }
+ #include <stdio.h>
+ int main()
+ {
+	printf("%d\n", ft_iterative_power(0, 2));
+ }

@@ -1,102 +1,98 @@
-//#include "ft_convert_base2.c"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/22 14:42:08 by nevan-ge          #+#    #+#             */
+/*   Updated: 2022/09/27 15:13:40 by nevan-ge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 
-int		display(int nb, char *str, char *result, int index)
-{
-	unsigned int	nbr;
-	unsigned int	str_length;
+int		get_nb(char c, char *base);
+int		ft_atoi_base(char *str, char *base);
+int		check_base(char *base);
 
-	str_length = 0;
-	while (str[str_length])
-		str_length++;
+void	ft_nbr_base(unsigned int nbr, char *base, char *result, int len)
+{
+	int		size;
+	int		i;
+
+	if (nbr == 0)
+		result[0] = base[0];
+	i = len - 1;
+		size = 0;
+	while (base[size])
+		size++;
+	while (nbr > 0)
+	{
+		result[i] = base[nbr % size];
+		nbr = nbr / size;
+		i--;
+	}
+}
+
+int	nb_len(int nb, char *base)
+{
+	int				nb_len;
+	unsigned int	base_len;
+	unsigned int	nbr;
+
+	nb_len = 0;
+	base_len = 0;
+	if (nb == 0)
+		return (1);
+	nbr = (unsigned int)nb;
 	if (nb < 0)
 	{
-		result[index++] = '-';
-		nbr = nb * -1;
+		nb_len++;
+		nbr = (unsigned int)-nb;
 	}
-	else
-		nbr = nb;
-	if (nbr >= str_length)
-		display(nbr / str_length, str, result, index - 1);
-	result[index] = str[nbr % str_length];
-	return (index);
-}
-
-int		get_number_length(int number, char *base)
-{
-	int	length;
-	int	base_length;
-
-	base_length = 0;
-	while (base[base_length])
-		base_length++;
-	length = 0;
-	while (number >= base_length)
+	while (base[base_len])
+		base_len++;
+	while (nbr >= 1)
 	{
-		++length;
-		number /= base_length;
+		nb_len++;
+		nbr /= base_len;
 	}
-	return (++length);
-}
-
-int		get_nb(char c, char *base)
-{
-	int	i;
-
-	i = 0;
-	while (base[i] && base[i] != c)
-		i++;
-	return (i);
-}
-
-int		ft_atoi_base(char *str, char *base)
-{
-	int	s;
-	int	i;
-	int	res;
-	int	negative;
-	int	base_length;
-
-	base_length = 0;
-	while (base[base_length])
-		++base_length;
-	s = 0;
-	while (str[s] != '\0' && (str[s] == ' ' || str[s] == '\t' || str[s] == '\r'
-				|| str[s] == '\n' || str[s] == '\v' || str[s] == '\f'))
-		s++;
-	i = s - 1;
-	res = 0;
-	negative = 1;
-	while (str[++i] && (((str[i] == '-' || str[i] == '+') && i == s) ||
-				(str[i] != '-' && str[i] != '+')))
-		if (str[i] == '-')
-			negative = -1;
-		else if (str[i] != '+')
-			res = (res * base_length) + (get_nb(str[i], base));
-	return (res * negative);
+	return (nb_len);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	char			*result;
-	int				number;
-	int				last_index;
+	int				nb;
+	unsigned int	n;
+	int				i;
 
-	if (!nbr || !base_from || !base_to)
+	if ((!(check_base(base_from)) || (!(check_base(base_to)))))
 		return (0);
-	number = ft_atoi_base(nbr, base_from);
-	result = malloc(sizeof(char) * get_number_length(number, base_to));
-	last_index = display(number, base_to, result,
-		get_number_length(number, base_to) - 1);
-	result[last_index + 1] = '\0';
+	nb = ft_atoi_base(nbr, base_from);
+	result = malloc (sizeof(char *) * (nb_len(nb, base_to)) + 1);
+	if (!(result))
+		return (0);
+	n = (unsigned int)nb;
+	i = 0;
+	while (i <= nb_len(nb, base_to))
+	{
+		result[i] = '\0';
+		i++;
+	}
+	if (nb < 0)
+	{
+		result[0] = '-';
+		n = (unsigned int)-nb;
+	}
+	ft_nbr_base(n, base_to, result, nb_len(nb, base_to));
 	return (result);
 }
 
-int main(int argc, const char *argv[])
+#include <stdio.h>
+
+int main()
 {
-	printf("%s\n", ft_convert_base(argv[1], argv[2], argv[3]));
-	return 0;
+	printf("%s\n", ft_convert_base("-7b", "0123456789abcdef", "01"));
 }

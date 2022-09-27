@@ -1,13 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_base2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 12:52:17 by nevan-ge          #+#    #+#             */
+/*   Updated: 2022/09/27 14:45:43 by nevan-ge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int i;
+#include <stdlib.h>
 
-	i = 0;
-	while(str[i])
-		i++;
-	return(i);
-}
+int		nb_len(int nb, char *base);
+char	*ft_nbr_base(int nbr, char *base);
 
 int	check_base(char *base)
 {
@@ -19,11 +25,11 @@ int	check_base(char *base)
 	if (base[0] == '\0' || base[1] == '\0')
 		return (0);
 	while (base[i])
-	{
+	{	
 		j = i + 1;
 		if (base[i] == '+' || base[i] == '-')
 			return (0);
-		if (base [i] < 32 || base[i] == 127)
+		if (base [i] <= 32 || base[i] == 127)
 			return (0);
 		while (base[j])
 		{
@@ -36,88 +42,59 @@ int	check_base(char *base)
 	return (1);
 }
 
-char	to_lower(char c)
+int	get_nb(char c, char *base)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + ('a' - 'A'));
-	return (c);
+	int	i;
+
+	i = 0;
+	while (base[i] && base[i] != c)
+		i++;
+	return (i);
 }
 
-int get_digit(char c, int digits_in_base)
+int	ft_atoi_base(char *str, char *base)
 {
-	int max_digit;
-	if (digits_in_base <= 10)
-		max_digit = digits_in_base + '0';
-	else
-		max_digit = digits_in_base - 10 + 'a';
+	int	s;
+	int	i;
+	int	res;
+	int	negative;
+	int	base_length;
 
-	if (c >= '0' && c <= '9' && c <= max_digit)
-		return (c - '0');
-	else if (c >= 'a' && c <= 'f' && c <= max_digit)
-		return (10 + c - 'a');
-	else
-		return (-1);
-}
-
-int ft_atoi_base(const char *str, int str_base)
-{
-	int result = 0;
-	int sign = 1;
-	int digit;
-
-	if (*str == '-')
+	base_length = 0;
+	while (base[base_length])
+		++base_length;
+	s = 0;
+	while (str[s] != '\0' && (str[s] == ' ' || str[s] == '\t' || str[s] == '\r'
+			|| str[s] == '\n' || str[s] == '\v' || str[s] == '\f'))
+		s++;
+	i = s - 1;
+	res = 0;
+	negative = 1;
+	while (str[++i] && (((str[i] == '-' || str[i] == '+') && i == s)
+			|| (str[i] != '-' && str[i] != '+')))
 	{
-		sign = -1;
-		++str;
+		if (str[i] == '-')
+			negative = -1;
+		else if (str[i] != '+')
+			res = (res * base_length) + (get_nb(str[i], base));
 	}
+	return (res * negative);
+}
 
-	while ((digit = get_digit(to_lower(*str), str_base)) >= 0)
+char	*ft_strcat(char *dest, char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (dest[i])
+		i++;
+	j = 0;
+	while (src[j])
 	{
-		result = result * str_base;
-		result = result + (digit * sign);
-		++str;
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (result);
-}
-
-int	nb_len(int nb, char *base)
-{
-	int nb_len;
-	int base_len;
-
-	nb_len = 0;
-	base_len = 0;
-	while(base[base_len])
-		base_len++;
-	while (nb >= base_len)
-	{
-		nb_len++;
-		nb /= base_len;
-	}
-	return(nb_len + 1);
-}
-
-char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
-{
-	char	*result;
-	int	nb;
-	int last_index;
-
-	if(!nbr || !(check_base(base_from) || !(check_base(base_to))))
-		return(0);
-	nb = ft_atoi_base(base_from, ft_strlen(base_from));
-	result = malloc(sizeof(char) * nb_len(nb, base_to));
-	if(!(result))
-		return(0);
-	
-
-}
-
-
-#include <stdio.h>
-
-int main(int ac, const char **av)
-{
-	printf("%s\n", ft_convert_base(av[1], av[2], av[3]));
-	return 0;
+	dest[i + j] = '\0';
+	return (dest);
 }

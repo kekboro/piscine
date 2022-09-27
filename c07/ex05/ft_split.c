@@ -82,3 +82,20 @@ char	**ft_split(char *str, char *charset)
 	write_split(res, str, charset);
 	return (res);
 }
+#include <stdio.h>
+int main()
+{
+	char *str = "hello, th is, is, a, test";
+	char *sep = ", ";
+	int		i;
+	char **new;
+
+	i = 6;
+	new  = ft_split(str, sep);
+	while (i < 6)
+	{
+		printf("%s\n", new[i]);
+			i++;
+	}
+
+}
