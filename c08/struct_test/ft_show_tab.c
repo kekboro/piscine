@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_show_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nevan-ge <nevan-ge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:29 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/23 16:32:41 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:06:02 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_putstr(char *str)
 	int i;
 
 	i = 0;
-	while(*str)
+	while(str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
@@ -53,19 +53,24 @@ void	ft_putnbr(int nb)
 }
 
 
-void	ft_show_tab(struct s_stock_str *par)
+void	ft_show_tab(struct s_stock_str *tab)
 {
 	int i;
 
 	i = 0;
-	while (par[i].str != 0)
+	while (tab[i].str != 0)
 	{
-		ft_putstr(par[i].str);
+		ft_putstr(tab[i].str);
 		ft_putchar('\n');
-		ft_putnbr(par[i].size);
+		ft_putnbr(tab[i].size);
 		ft_putchar('\n');
-		ft_putstr(par[i].copy);
+		ft_putstr(tab[i].copy);
 		ft_putchar('\n');
 		i++;
 	}
+}
+
+int main(int ac, char **av)
+{
+	ft_show_tab(ft_strs_to_tab(ac, av));
 }

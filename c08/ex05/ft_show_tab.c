@@ -6,7 +6,7 @@
 /*   By: nvan-ges <nvan-ges@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:41:29 by nvan-ges          #+#    #+#             */
-/*   Updated: 2022/02/23 16:31:40 by nvan-ges         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:41:01 by nevan-ge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_putstr(char *str)
 	int i;
 
 	i = 0;
-	while(*str)
+	while(str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
